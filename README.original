@@ -1,0 +1,44 @@
+QeePHP v3
+
+
+
+== 运行单元测试 ==
+
+创建两个数据库：
+
+qeephp_test_db1
+qeephp_test_db2
+
+创建数据表：
+
+CREATE TABLE `post` (
+  `post_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(80) NOT NULL,
+  `author` varchar(20) DEFAULT NULL,
+  `click_count` int(11) DEFAULT '0',
+  PRIMARY KEY (`post_id`),
+  KEY `title` (`title`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `body` text NOT NULL,
+  `author` varchar(80) DEFAULT NULL,
+  `created` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`comment_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE `revision` (
+  `rev_id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `body` text NOT NULL,
+  `created` int(11) NOT NULL,
+  PRIMARY KEY (`rev_id`,`post_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+$ cd tests
+$ phpunit cases
+
+单元测试产生的日志文件放在 tests/tmp 目录中
+
