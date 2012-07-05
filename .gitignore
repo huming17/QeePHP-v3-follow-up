@@ -4,4 +4,5 @@ nbproject/private/private.properties
 nbproject/project.properties
 nbproject/project.xml
 nbproject/
-
+.settings/
+.project
